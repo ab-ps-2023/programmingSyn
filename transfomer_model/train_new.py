@@ -1,5 +1,5 @@
 from model import build_transformer
-from dataset import BilingualDataset, causal_mask
+from dataset import TextToSQLDataset, causal_mask
 from config import get_config_new,get_config, get_weights_file_path, latest_weights_file_path
 from test import getTrainingData
 
@@ -216,8 +216,8 @@ def get_ds(config):
 
     print(f"train_ds_raw : {train_ds_raw}, tokenizer_src : {type(tokenizer_src)}, tokenizer_tgt : {type(tokenizer_tgt)} ")
 
-    train_ds = BilingualDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
-    val_ds = BilingualDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
+    train_ds = TextToSQLDataset(train_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
+    val_ds = TextToSQLDataset(val_ds_raw, tokenizer_src, tokenizer_tgt, config['lang_src'], config['lang_tgt'], config['seq_len'])
 
     # Find the maximum length of each sentence in the source and target sentence
     max_len_src = 0
